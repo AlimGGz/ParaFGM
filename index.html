@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11101a">
+  <meta name="description" content="Un espacio privado para recordar, escuchar y compartir.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Un pequeño universo · Acceso privado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="starfield" aria-hidden="true"></div>
+  <div class="page-glow" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="brand"><span class="brand-star">✦</span><span>UN PEQUEÑO UNIVERSO</span></div>
+    <div class="top-actions">
+      <span id="timer" class="timer" hidden aria-live="off"></span>
+      <button id="music-button" class="button-icon" type="button" hidden aria-label="Abrir música">♫</button>
+      <button id="logout-button" class="button-icon" type="button" hidden aria-label="Cerrar sesión">↗</button>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section id="setup-screen" class="screen center" hidden>
+      <p class="eyebrow">CONFIGURACIÓN PENDIENTE</p>
+      <h1>Este universo <em>aún no está conectado.</em></h1>
+      <p class="lead">Antes de compartirlo, hay que conectar el servidor privado. Las fotografías y las cartas no se publican directamente en GitHub.</p>
+    </section>
+    <section id="login-screen" class="screen center" hidden>
+      <div class="gate-ornament" aria-hidden="true">✧　✦　✧</div>
+      <p class="eyebrow">UNA HISTORIA CONTADA SOLO PARA TI</p>
+      <h1>Hay recuerdos que <em>merecen su propio universo.</em></h1>
+      <p class="lead">Preparé un lugar para mirar lo que compartimos. No tienes que responder ni terminar el recorrido. Solo entra si te apetece hacerlo.</p>
+      <form id="login-form" class="gate-form" autocomplete="off">
+        <label for="pin">Tu código privado de acceso</label>
+        <div class="pin-field"><input id="pin" name="pin" type="password" inputmode="numeric" pattern="[0-9]{6,12}" minlength="6" maxlength="12" placeholder="••••••" autocomplete="off" required><button class="btn primary" type="submit">Entrar <span>↗</span></button></div>
+        <p class="footnote">El acceso dura 72 horas desde la primera entrada correcta. Después, los recuerdos se cierran y las copias activas se eliminan. Sin plazos para tus sentimientos.</p>
+        <p id="login-feedback" class="feedback" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <section id="expired-screen" class="screen center" hidden>
+      <div class="gate-ornament">✦</div>
+      <p class="eyebrow">ESTE CAPÍTULO SE CERRÓ</p>
+      <h1>Gracias por <em>estar aquí.</em></h1>
+      <p class="lead">Las 72 horas de acceso terminaron. El contenido privado ya no está disponible. No había ninguna respuesta obligatoria.</p>
+      <details class="admin-box"><summary>Administración · reiniciar acceso</summary><form id="reset-form"><label for="reset-pin">Código numérico de reinicio</label><div class="pin-field"><input id="reset-pin" type="password" inputmode="numeric" pattern="[0-9]{6,12}" minlength="6" maxlength="12" autocomplete="off" placeholder="••••••" required><button class="btn primary" type="submit">Reiniciar</button></div><p id="reset-feedback" class="feedback" role="status"></p></form></details>
+    </section>
+    <section id="loading-screen" class="screen center" hidden><div class="loading-star">✦</div><p class="eyebrow">ABRIENDO UN PEQUEÑO UNIVERSO…</p></section>
+    <section id="story-screen" class="screen story" hidden>
+      <div class="story-top"><span id="chapter-number" class="eyebrow"></span><span id="chapter-progress" class="progress-text"></span></div>
+      <div class="progress-track"><div id="progress-fill"></div></div>
+      <article id="chapter-article" aria-live="polite"></article>
+      <nav class="chapter-nav" aria-label="Navegación entre capítulos"><button id="back-button" class="btn ghost" type="button">← Atrás</button><button id="next-button" class="btn primary" type="button">Continuar <span>↗</span></button></nav>
+      <p class="skip-text"><button id="skip-button" type="button">Ir directamente a la carta final</button>. Siempre puedes cerrar esta página.</p>
+    </section>
+  </main>
+  <footer>Con cariño. <span>✦</span> Hecho para recordar, no para exigir.</footer>
+  <dialog id="photo-dialog" class="photo-dialog"><button id="close-photo" class="dialog-close" type="button" aria-label="Cerrar fotografía">×</button><img id="big-photo" alt="Fotografía ampliada"><p id="photo-caption"></p></dialog>
+  <dialog id="music-dialog" class="music-dialog"><button id="close-music" class="dialog-close" type="button" aria-label="Cerrar música">×</button><p class="eyebrow">LA MÚSICA DE ESTE RECORRIDO</p><h2>Un poco de música, <em>si te apetece.</em></h2><div id="music-player"></div><p class="footnote">La reproducción necesita tu permiso. El volumen se ajusta en Spotify o en tu dispositivo.</p></dialog>
+  <script src="config.js"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
